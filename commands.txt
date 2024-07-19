@@ -1,0 +1,85 @@
+19-jul-2024
+===========
+select * 
+from employees
+
+select fullname, salary 
+from employees
+
+select fullname, salary, salary * 1.1 as newsalary
+from employees
+
+select fullname, salary
+from employees
+where salary > 1000000
+
+select fullname, salary
+from employees
+where id = 8
+
+select distinct job_id
+from employees
+
+
+select *
+from employees
+order by salary 
+
+select *
+from employees
+order by salary  desc
+
+
+select *
+from employees
+order by department_id, salary desc
+
+select *
+from employees
+order by joinedon desc
+
+
+select *
+from employees
+where salary > 1000000 and department_id = 'IT'
+
+select *
+from employees
+where salary >= 500000 and salary <= 1000000
+
+select *
+from employees
+where (salary >= 500000 and salary <= 1000000) or department_id = 'IT'
+
+
+select *
+from employees
+where salary between 500000 and 1000000
+
+select *
+from employees
+where id between 5 and 10
+
+update employees set salary = null
+where id = 7
+
+select * from employees where salary = null
+
+select *
+from employees 
+where salary is null
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
