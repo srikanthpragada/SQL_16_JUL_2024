@@ -70,6 +70,59 @@ from employees
 where salary is null
 
 
+22-JUL-2024
+============
+select *
+from employees 
+where fullname like 'L%'
+
+select *
+from employees 
+where fullname like '_i%'
+
+select *
+from employees 
+where fullname like '% T%'
+
+select *
+from employees 
+where joinedon like '%-11-%'
+
+
+select fullname, round(salary * 1.1) new_salary
+from employees 
+order by 2 desc
+
+insert into leaves(employee_id, leavedate,leavetype) 
+   values(5,'2024-3-10','c')
+
+UPDATE EMPLOYEES
+SET JOB_ID = 'TL'
+WHERE ID = 5;
+
+
+delete from employees
+where id = 5
+
+transcation 
+----------
+begin transaction 
+
+update employees set salary = 1000000
+where id = 5
+
+select * from employees
+
+rollback
+
+-----------------
+
+
+
+
+
+
+
 
 
 
