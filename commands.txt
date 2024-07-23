@@ -118,15 +118,38 @@ rollback
 -----------------
 
 
+23-JUL-2024
+============
+
+select round(123.656), round(123.567,2)
 
 
+select fullname, salary, round(salary * 1.1)
+from employees
+
+select abs(random()) % 100
+
+select *
+from employees
+where lower(fullname) like '%m%m%'
+
+select ltrim('   abc xyz'), ltrim('..**..abc','.*')
+
+select substr('Sqlite',-3,2)
+
+select fullname, substr(fullname, instr(fullname, ' ') + 1) as lastname
+from employees
 
 
+select  strftime('%Y', joinedon)
+from employees
 
+select * 
+from employees
+where strftime('%Y', joinedon) = '2021'
 
-
-
-
+SELECT fullname, JULIANDAY(date()) - JULIANDAY(JOINEDON) nodays
+FROM EMPLOYEES
 
 
 
