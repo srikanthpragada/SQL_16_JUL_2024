@@ -151,9 +151,71 @@ where strftime('%Y', joinedon) = '2021'
 SELECT fullname, JULIANDAY(date()) - JULIANDAY(JOINEDON) nodays
 FROM EMPLOYEES
 
+24-JUL-2024
+==========
+SELECT  fullname, email, substr(email, instr(email, '@') + 1) server
+FROM EMPLOYEES
+where department_id = 'IT'
 
 
+SELECT fullname,  strftime('%d', joinedon)
+FROM EMPLOYEES
+where strftime('%d', joinedon) <= '07'
 
+
+SELECT fullname,  strftime('%d-%m-%Y',joinedon), salary
+FROM EMPLOYEES
+
+SELECT fullname,  ifnull(salary, 0)
+FROM EMPLOYEES
+
+SELECT fullname,  iif(salary > 1000000, 'Costly', 'Normal')
+FROM EMPLOYEES
+
+
+SELECT  fullname, cast(strftime('%d', joinedon) as integer)
+from employees
+where cast(strftime('%d', joinedon) as integer) <= 7
+
+SELECT strftime('%Y', joinedon)  + 1
+from employees
+
+SELECT sum(salary)
+from employees
+
+SELECT count(id), sum(salary)
+from employees
+
+SELECT  department_id, sum(salary)
+from employees
+group by department_id
+
+SELECT  job_id, sum(salary)
+from employees
+group by job_id
+
+
+SELECT strftime('%Y', joinedon) year, count(id)
+from employees
+group by strftime('%Y', joinedon)
+
+SELECT leavetype, count(*)
+from leaves
+group by leavetype 
+
+update leaves set leavedate  = '2024-03-10'
+where id = 10
+
+
+SELECT leavetype, strftime('%m',leavedate) month,  count(*)
+from leaves
+group by leavetype , strftime('%m',leavedate)
+
+
+SELECT  department_id, count(*)
+from employees
+where salary > 500000
+group by department_id 
 
 
 
