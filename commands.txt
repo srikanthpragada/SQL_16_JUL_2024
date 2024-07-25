@@ -218,6 +218,85 @@ where salary > 500000
 group by department_id 
 
 
+25-JUL-2024
+============
+SELECT department_id, count(*)
+from employees
+group by department_id 
+having  count(*) > 2
+
+
+SELECT employee_id, count(*)
+from leaves
+group by employee_id
+having  count(*) > 2
+
+
+SELECT employee_id, leavetype, count(*)
+from leaves
+group by employee_id, leavetype
+having  count(*) > 2
+
+SELECT department_id
+from employees
+where salary > 500000
+group by department_id
+having  count(*) > 2
+
+select fullname, name
+from employees join departments
+on employees.DEPARTMENT_ID  = departments.id 
+
+select fullname, title
+from employees join jobs
+on employees.job_ID  = jobs.id 
+
+select fullname, leavedate, leavetype
+from employees join leaves 
+on employees.id  = leaves.employee_id
+order by 1
+
+select fullname, leavedate 
+from employees join leaves
+on employees.id  = leaves.employee_id
+where leavetype = 's' 
+
+
+select d.name, sum(salary)
+from employees e join departments d
+on e.DEPARTMENT_ID = d.id 
+group by department_id
+
+select d.name, sum(salary) totalSalary
+from employees e join departments d
+on e.DEPARTMENT_ID = d.id 
+group by department_id
+
+
+select department_id, sum(hra)
+from employees e join payroll p
+on e.id = p.employee_id
+group by e.DEPARTMENT_ID
+
+
+SELECT name, count(*)
+from employees e join departments d
+on e.DEPARTMENT_ID = d.id 
+where salary > 500000
+group by department_id
+having  count(*) > 2
+
+
+select fullname, leavedate
+from employees e left outer join leaves l
+on e.id = l.employee_id
+
+
+
+
+
+
+
 
 
 
