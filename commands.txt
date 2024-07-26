@@ -293,6 +293,65 @@ on e.id = l.employee_id
 
 
 
+26-JUL-2024
+============
+select fullname,  title
+from employees e join jobs j
+on e.JOB_ID  = j.id 
+
+
+select fullname,  title, salary
+from employees e join jobs j
+on e.JOB_ID  = j.id 
+where salary < 500000
+
+select strftime('%Y', leavedate) Year, count(*) No_of_leaves
+from leaves
+group by  strftime('%Y', leavedate)
+
+select department_id, 
+    avg(floor((julianday(date())  - julianday(joinedon) ) / 365))
+from employees
+group by  department_id
+
+select job_id, avg(salary)
+from employees
+group by job_id
+having avg(salary) < 500000
+
+select fullname, department_id, job_id, salary, (basic+hra-tax-pf), paidon
+from employees e join payroll p 
+on e.id = p.employee_id
+
+select fullname, title, name
+from employees e join departments d on e.department_id = d.id
+join jobs j on e.job_id = j.id
+
+select d.name, count(*)
+from employees e join departments d on e.department_id = d.id
+join leaves l on e.id = l.employee_id
+group by d.name 
+
+select fullname, leavedate
+from employees e left outer join leaves l on e.id = l.employee_id
+
+select fullname, count(l.id)
+from employees e left outer join leaves l on e.id = l.employee_id
+group by fullname 
+order by 2
+
+
+select title, count(*)
+from employees e join jobs j on e.job_id = j.id
+group by title
+having count(*) > 1
+
+
+select fullname, name, title
+from employees e join jobs j on e.job_id = j.id
+  join departments d on e.DEPARTMENT_ID = d.id 
+  join leaves l on  l.employee_id = e.id 
+where leavetype = 'c'
 
 
 
