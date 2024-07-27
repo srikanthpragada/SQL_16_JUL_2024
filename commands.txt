@@ -353,9 +353,93 @@ from employees e join jobs j on e.job_id = j.id
   join leaves l on  l.employee_id = e.id 
 where leavetype = 'c'
 
+27-JUL-2024
+============
+select e.*
+from employees  e join departments d 
+on e.department_id = d.id 
+join jobs j on e.JOB_ID = j.id 
+where j.title like '%lead%' or d.name like 'A%'
 
 
 
+select fullname, name, salary, basic, hra
+from employees  e join departments d 
+on e.department_id = d.id 
+join payroll p on e.id = p.employee_id 
+where hra > basic * .30 
+
+
+select *
+from departments
+where id in
+   (
+   select department_id
+   from employees
+   where salary  > 1000000
+   )
+
+
+select *
+from employees
+where salary <
+   (
+   select avg(salary)
+   from employees
+   )
+
+
+select *
+from employees
+where id in
+   (select employee_id
+    from leaves
+   )
+
+
+select *
+from employees
+where id not in
+   (select employee_id
+    from leaves
+   )
+
+
+select *
+from employees
+where salary > 
+   (select max(salary)
+    from employees
+    where department_id = 'IT'
+   )
+
+
+select *
+from employees
+where id not in
+   (select employee_id
+    from leaves
+    where strftime('%Y', leavedate) = strftime('%Y', date())
+   )
 
 
 
+select * 
+from departments
+where id in 
+(
+    select department_id
+    from employees
+    where id in
+    (
+        select employee_id
+        from leaves
+        where leavetype = 'v'
+    )
+)
+
+
+
+ 
+
+ 
