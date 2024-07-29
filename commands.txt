@@ -440,6 +440,83 @@ where id in
 
 
 
- 
+29-JUL-2024
+===========
+
+insert into employees(fullname,department_id, job_id, salary, joinedon)
+  values('Vivan Richards', 'IT','PR', 
+         (select avg(salary) from employees 
+          where job_id = 'PR' and department_id = 'IT'),
+          date()
+        )
+
+
+CREATE TABLE COSTLY_EMPLOYEES
+AS
+SELECT * FROM EMPLOYEES
+WHERE SALARY > 1000000
+
+
+SELECT *
+FROM EMPLOYEES EMP WHERE SALARY >=
+    (SELECT AVG(SALARY)
+    FROM EMPLOYEES
+    WHERE DEPARTMENT_ID = EMP.DEPARTMENT_ID)
+
+
+SELECT count(*)
+FROM EMPLOYEES  
+group by department_id
+order by 1 desc 
+limit 1
+
+select * 
+from employees
+order by salary desc 
+limit 2
+
+
+select * 
+from employees
+order by salary desc 
+limit 2 offset 3
+
+
+select  fullname, salary 
+from employees
+where department_id = 'IT'
+union 
+select  fullname, salary 
+from employees
+where department_id = 'AC'
+
+
+select  employee_id
+from  leaves
+intersect 
+select  employee_id
+from  payroll
+where hra > 10000
+
+
+select  employee_id
+from  leaves
+except
+select  employee_id
+from  payroll
+where hra > 10000
+
+
+create view it_employees
+as 
+select * from employees where department_id = 'IT'
+
+
+select * from it_employees
+
+
+
+
+
 
  
