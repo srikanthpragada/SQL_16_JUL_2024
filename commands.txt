@@ -511,12 +511,53 @@ create view it_employees
 as 
 select * from employees where department_id = 'IT'
 
-
 select * from it_employees
 
 
+30-JUL-2024
+===========
+select *
+from employees emp where joinedon = 
+  (select max(joinedon)
+   from employees
+   where department_id = emp.DEPARTMENT_ID)
 
 
 
+select employee_id, count(*)
+from leaves
+group by employee_id
+order by 2 desc 
+limit 2
+
+
+select * from departments 
+where id = (
+select department_id
+from  employees
+group by department_id
+order by avg(salary) desc 
+limit 1
+)
+
+
+
+create view dept_summary
+as
+select name, count(*) empcount, sum(salary) totalsalary
+from employees join departments on employees.DEPARTMENT_ID = departments.id
+group by name
+
+select * from dept_summary
+
+
+
+CREATE INDEX EMP_FULLNAME_IDX
+ON EMPLOYEES(FULLNAME)
+
+
+explain query plan  
+select * from employees
+ where  fullname = 'Joe'
 
  
